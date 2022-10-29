@@ -14,6 +14,7 @@ import java.util.Scanner;
  * This is the main CarStatus Class.
  * Class CarStatus
  */
+
 final class Main {
 
     /**
@@ -35,60 +36,62 @@ final class Main {
     *
     * @param args No args will be used
     */
-    public static void main(final String[] args) {
 
+    public static void main(final String[] args) {
 
         final Scanner firstInput = new Scanner(System.in);
         final Scanner secondInput = new Scanner(System.in);
         final Scanner thirdInput = new Scanner(System.in);
 
-        try { 
-           
-        System.out.println("Enter your triangles sides(cm)");
-        System.out.print("Enter your first side: ");
-        final double sideA = firstInput.nextInt();
-        System.out.print("Enter your second side: ");
-        final double sideB = secondInput.nextInt();
-        System.out.print("Enter your third side: ");
-        final double sideC = thirdInput.nextInt();
+        try {
 
-        if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
-            System.out.println("Invalid Input, Number to small!");
-        } else if (sideA + sideB < sideC || sideB + sideC <= sideA || sideA + sideC <= sideB) {
-            System.out.println("Invalid Input, To long.");
-        } else {
+            System.out.println("Enter your triangles sides(cm)");
+            System.out.print("Enter your first side: ");
+            final double sideA = firstInput.nextInt();
+            System.out.print("Enter your second side: ");
+            final double sideB = secondInput.nextInt();
+            System.out.print("Enter your third side: ");
+            final double sideC = thirdInput.nextInt();
 
-        // this is a triangle program
-        final Triangle triangle = new Triangle(sideA, sideB, sideC);
+            if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
+                System.out.println("Invalid Input, Number to small!");
+            } else if (sideA + sideB <= sideC || sideB + sideC <= sideA
+                            || sideA + sideC <= sideB) {
+                System.out.println("Invalid Input, To long.");
+            } else {
 
-        triangle.status();
+                // this is a triangle program
+                final Triangle triangle = new Triangle(sideA, sideB, sideC);
 
-        triangle.triangleName(sideA, sideB, sideC);
-        System.out.println("\nThe shape is a " + triangle.getShape());
+                triangle.status();
 
-        System.out.println("");
-        System.out.println("The Perimeter and Area are below!");
-        triangle.trianglePerimeter(sideA, sideB, sideC);
-        System.out.println("\nThe perimeter is " + triangle.getPerimeter() + "cm");
+                triangle.triangleName(sideA, sideB, sideC);
+                System.out.println("\nThe shape is a " + triangle.getShape());
 
-        triangle.triangleArea(sideA, sideB, sideC);
-        System.out.println("The area is " + triangle.getArea() + "cm²");
+                System.out.println("");
+                System.out.println("The Perimeter and Area are below!");
+                triangle.trianglePerimeter(sideA, sideB, sideC);
+                System.out.println("\nThe perimeter is "
+                                + triangle.getPerimeter() + "cm");
 
-        System.out.println("");
-        System.out.println("The angles are below!");
-        triangle.angleA(sideA, sideB, sideC);
-        System.out.println("Angle A is " +triangle.getAngleA() + "°");
+                triangle.triangleArea(sideA, sideB, sideC);
+                System.out.println("The area is " + triangle.getArea() + "cm²");
 
-        triangle.angleB(sideA, sideB, sideC);
-        System.out.println("Angle B is " + triangle.getAngleB() + "°");
+                System.out.println("");
+                System.out.println("The angles are below!");
+                triangle.angleA(sideA, sideB, sideC);
+                System.out.println("Angle A is " +triangle.getAngleA() + "°");
 
-        triangle.angleC(sideA, sideB, sideC);
-        System.out.println("Angle C is " + triangle.getAngleC() + "°");
+                triangle.angleB(sideA, sideB, sideC);
+                System.out.println("Angle B is " + triangle.getAngleB() + "°");
 
-}
-    } catch (java.util.InputMismatchException ex) {
-        System.out.println("Invalid Input");
-    }
-System.out.println("\nDone!");
+                triangle.angleC(sideA, sideB, sideC);
+                System.out.println("Angle C is " + triangle.getAngleC() + "°");
+
+            }
+        } catch (java.util.InputMismatchException ex) {
+            System.out.println("Invalid Input");
+        }
+    System.out.println("\nDone!");
     }
 }
