@@ -4,7 +4,7 @@
 *
 * @author  Jackson Naufal
 * @version 1.0
-* @since   2022-10-24
+* @since   2022-11-08
 */
 
 /**
@@ -172,11 +172,12 @@ public class Triangle {
      * @return this returns the angles
      */
     public double angles(int side) {
-        final double radianAngle;
+        final double radian;
         final int total = 3;
-        if (this.isTriangleValid() && side > 0 && side <= total) {
-            // I do not want to redo this, so I will not remove this array.
-            final double[] radianAngles = {
+        if (!this.isTriangleValid()) {
+            radian = -1;
+        } else {
+            final double[] angles = {
                 Math.acos((Math.pow(this.sideA, 2) + Math.pow(this.sideB, 2)
                 - Math.pow(this.sideC, 2)) / (2 * this.sideA * this.sideB)),
                 Math.acos((Math.pow(this.sideB, 2) + Math.pow(this.sideC, 2)
@@ -185,12 +186,9 @@ public class Triangle {
                 - Math.pow(this.sideB, 2)) / (2 * this.sideC * this.sideA)),
             };
 
-            radianAngle = radianAngles[side - 1];
-        } else {
-            radianAngle = -1;
+            radian = angles[side - 1];
         }
-
-        return radianAngle;
+        return radian;
     }
 
     /**
@@ -200,23 +198,21 @@ public class Triangle {
      * @return returns the height.
      */
     public double height(int side) {
-        final double radianAngle;
+        final double height;
         final int total = 3;
         final double area = area();
-        if (this.isTriangleValid() && side > 0 && side <= total) {
-            // I do not want to redo this, so I will not remove this array.
-            final double[] radianAngles = {
+        if (!this.isTriangleValid()) {
+            height = -1;
+        } else {
+            final double[] heightMeasure = {
                 (2 * area) / this.sideA,
                 (2 * area) / this.sideB,
                 (2 * area) / this.sideC,
             };
 
-            radianAngle = radianAngles[side - 1];
-        } else {
-            radianAngle = -1;
+            height = heightMeasure[side - 1];
         }
-
-        return radianAngle;
+        return height;
     }
 
     /**

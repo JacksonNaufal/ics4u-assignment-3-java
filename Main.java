@@ -104,11 +104,11 @@ final class Main {
 
                 System.out.println("\nThe angles are below!");
                 System.out.println("Angle A is " + String.format(RAD,
-                                        triangle.angles(1)));
-                System.out.println("Angle B is " + String.format(RAD,
                                         triangle.angles(2)));
-                System.out.println("Angle C is " + String.format(RAD,
+                System.out.println("Angle B is " + String.format(RAD,
                                         triangle.angles(THREE)));
+                System.out.println("Angle C is " + String.format(RAD,
+                                        triangle.angles(1)));
 
                 System.out.println("\nThe heights are below!");
                 System.out.println("The height of side A is "
