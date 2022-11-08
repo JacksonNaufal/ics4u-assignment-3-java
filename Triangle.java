@@ -1,6 +1,6 @@
 /*
-* This is a program that gets the Vehicle status
-* from Vehicle to carStatus
+* This is a program that gets the Triangle status
+* from Triangle to Main
 *
 * @author  Jackson Naufal
 * @version 1.0
@@ -8,8 +8,8 @@
 */
 
 /**
- * This is the class for Vehicle.
- * Make class Vehicle.
+ * This is the class for Triangle.
+ * Make class Triangle.
  */
 
 public class Triangle {
@@ -30,80 +30,14 @@ public class Triangle {
     private double sideC;
 
     /**
-     * This is the shape.
-     */
-    private String shape;
-
-    /**
-     * This is the perimeter.
-     */
-    private double perimeter;
-
-    /**
-     * This is the semiperimeter.
-     */
-    private double semiperimeter;
-
-    /**
-     * This is the area.
-     */
-    private double area;
-
-    /**
-     * This is the topSideA.
-     */
-    private double topSideA;
-
-    /**
-     * This is the topSideB.
-     */
-    private double topSideB;
-
-    /**
-     * This is the topSideC.
-     */
-    private double topSideC;
-
-    /**
-     * This is the angleOne.
-     */
-    private double angleOne;
-
-    /**
-     * This is the angleTwo.
-     */
-    private double angleTwo;
-
-    /**
-     * This is the angleThree.
-     */
-    private double angleThree;
-
-    /**
-     * This is the TRIANGLEDEGREE.
-     */
-    private final static double TRIANGLEDEGREE = 180;
-
-    /**
-     * This is the DEGREE.
-     */
-    private final static double DEGREE = 3.14;
-
-    /**
-     * This is the HERE.
-     */
-    private final static String HERE = "true";
-
-    /**
      * This is the Triangle Constructor.
      *
-     * @param sideA This is the first side.
-     * @param sideB This is the second side.
-     * @param sideC This is the third side.
-     *
+     * @param sideA this is sideA.
+     * @param sideB this is sideB.
+     * @param sideC this is sideC.
      */
     public Triangle(
-        double sideA, 
+        double sideA,
         double sideB,
         double sideC) {
         this.sideA = sideA;
@@ -111,167 +45,216 @@ public class Triangle {
         this.sideC = sideC;
     }
 
+    /**
+     * This is sideA.
+     *
+     * @return returns side A.
+     */
+    public double getSideA() {
+        return this.sideA;
+    }
+
+    /**
+     * This is sideB.
+     *
+     * @return returns side B.
+     */
+    public double getSideB() {
+        return this.sideB;
+    }
+
+    /**
+     * This is sideC.
+     *
+     * @return returns side C.
+     */
+    public double getSideC() {
+        return this.sideC;
+    }
+
+    /**
+     * This is the isTriangleValid function.
+     *
+     * @return false this is false.
+     */
+    public boolean isTriangleValid() {
+        final boolean valid;
+        if (this.sideA + this.sideB <= this.sideC
+            || this.sideB + this.sideC <= this.sideA
+            || this.sideA + this.sideC <= this.sideB) {
+            valid = false;
+        } else {
+            valid = true;
+        }
+        return valid;
+    }
 
     /**
      * This is the triangleName function.
      *
-     * @param sideA The first side.
-     * @param sideB The second side.
-     * @param sideC the third side.
      * @return this.shape Returns the shape.
      */
-    public String triangleName(double sideA, double sideB, double sideC) {
-        if (sideA == sideB && sideB == sideC) {
-            return this.shape = "Equilateral Triangle";
-        } else if (sideA == sideB || sideB == sideC || sideA == sideC) {
-            return this.shape = "Isoceles Triangle!";
-        } else if  (
-            sideA * sideA + sideB * sideB == sideC * sideC ||
-            sideC * sideC + sideB * sideB == sideA * sideA ||
-            sideC * sideC + sideA * sideA == sideB * sideB
-        ) {
-            return this.shape = "Right Angle Triangle!";
+    public String triangleName() {
+        final String shape;
+        if (!this.isTriangleValid()) {
+            shape = "-1";
         } else {
-            return this.shape = "Scalene Triangle!";
-    }
+            if (sideA == sideB && sideB == sideC) {
+                shape = "Equilateral Triangle";
+            } else if (sideA == sideB || sideB == sideC || sideA == sideC) {
+                shape = "Isoceles Triangle!";
+            } else if (
+                    sideA * sideA + sideB * sideB == sideC * sideC
+                    || sideC * sideC + sideB * sideB == sideA * sideA
+                    || sideC * sideC + sideA * sideA == sideB * sideB
+            ) {
+                shape = "Right Angle Triangle!";
+            } else {
+                shape = "Scalene Triangle!";
+            }
+        }
+        return shape;
     }
 
     /**
      * This is the trianglePerimeter.
      *
-     * @param sideA The first side.
-     * @param sideB The second side.
-     * @param sideC the third side.
+     * @return this returns the perimeter.
      */
-    public void trianglePerimeter(double sideA, double sideB, double sideC) {
-        this.perimeter = sideA + sideC + sideB;
-    }
-
-     /**
-     * This is the triangleArea.
-     *
-     * @param sideA The first side.
-     * @param sideB The second side.
-     * @param sideC the third side.
-     */
-    public void triangleArea(double sideA, double sideB, double sideC) {
-         this.semiperimeter = (sideA + sideB + sideC) / 2;
-
-         this.area = Math.sqrt(this.semiperimeter * (this.semiperimeter - sideA) * (this.semiperimeter - sideB) * (this.semiperimeter - sideC));       
+    private double perimeter() {
+        final double perimeter;
+        if (!this.isTriangleValid()) {
+            perimeter = -1;
+        } else {
+            perimeter = this.sideA + this.sideC + this.sideB;
+        }
+        return perimeter;
     }
 
     /**
-     * This is the angleA.
+     * This is the semiperimeter.
      *
-     * @param sideA The first side.
-     * @param sideB The second side.
-     * @param sideC the third side.
+     * @return this is the semierimeter.
      */
-    public void angleA(double sideA, double sideB, double sideC) {
-
-    this.topSideA = sideA * sideA;
-    this.topSideB = sideB * sideB;
-    this.topSideC = sideC * sideC;
-
-    this.angleOne = Math.acos((this.topSideB + this.topSideC - this.topSideA) / (2 * sideB * sideC)) * (TRIANGLEDEGREE / DEGREE);
-
+    public double semiperimeter() {
+        final double semiperimeter;
+        if (!this.isTriangleValid()) {
+            semiperimeter = -1;
+        } else {
+            semiperimeter = perimeter() / 2;
+        }
+        return semiperimeter;
     }
 
     /**
-     * This is the angleB.
-     *
-     * @param sideA The first side.
-     * @param sideB The second side.
-     * @param sideC the third side.
-     */
-    public void angleB(double sideA, double sideB, double sideC) {
-
-        this.topSideA = sideA * sideA;
-        this.topSideB = sideB * sideB;
-        this.topSideC = sideC * sideC;
-
-        this.angleTwo = Math.acos((this.topSideA + this.topSideC - this.topSideB) / (2 * sideA * sideC)) * (TRIANGLEDEGREE / DEGREE);
+    * This is the triangleArea.
+    *
+    * @return this is the area.
+    */
+    public double area() {
+        final double semiperimeter = semiperimeter();
+        final double area;
+        if (!this.isTriangleValid()) {
+            area = -1;
+        } else {
+            area = Math.sqrt(semiperimeter
+                        * (semiperimeter - this.sideA)
+                        * (semiperimeter - this.sideB)
+                        * (semiperimeter - this.sideC));
+        }
+        return area;
     }
 
     /**
-     * This is the angleC.
+     * This is the angles.
      *
-     * @param sideA The first side.
-     * @param sideB The second side.
-     * @param sideC the third side.
+     * @param side this is the side.
+     * @return this returns the angles
      */
-    public void angleC(double sideA, double sideB, double sideC) {
+    public double angles(int side) {
+        final double radianAngle;
+        final int total = 3;
+        if (this.isTriangleValid() && side > 0 && side <= total) {
+            // I do not want to redo this, so I will not remove this array.
+            final double[] radianAngles = {
+                Math.acos((Math.pow(this.sideA, 2) + Math.pow(this.sideB, 2)
+                - Math.pow(this.sideC, 2)) / (2 * this.sideA * this.sideB)),
+                Math.acos((Math.pow(this.sideB, 2) + Math.pow(this.sideC, 2)
+                - Math.pow(this.sideA, 2)) / (2 * this.sideB * this.sideC)),
+                Math.acos((Math.pow(this.sideC, 2) + Math.pow(this.sideA, 2)
+                - Math.pow(this.sideB, 2)) / (2 * this.sideC * this.sideA)),
+            };
 
-        this.topSideA = sideA * sideA;
-        this.topSideB = sideB * sideB;
-        this.topSideC = sideC * sideC;
+            radianAngle = radianAngles[side - 1];
+        } else {
+            radianAngle = -1;
+        }
 
-        this.angleThree =
-          Math.acos((this.topSideB + this.topSideA - this.topSideC) / (2 * sideB * sideA)) * (TRIANGLEDEGREE / DEGREE);
+        return radianAngle;
     }
 
     /**
-     * This returns the Shape.
+     * This is the heights of the triangle.
      *
-     * @return this returns the shape.
+     * @param side the sides.
+     * @return returns the height.
      */
-    public String getShape() {
-        return this.shape;
-    }
-   
-    /**
-     * This returns the getPerimeter.
-     *
-     * @return this returns the getPerimeter.
-     */
-    public double getPerimeter() {
-        return this.perimeter;
-    }
+    public double height(int side) {
+        final double radianAngle;
+        final int total = 3;
+        final double area = area();
+        if (this.isTriangleValid() && side > 0 && side <= total) {
+            // I do not want to redo this, so I will not remove this array.
+            final double[] radianAngles = {
+                (2 * area) / this.sideA,
+                (2 * area) / this.sideB,
+                (2 * area) / this.sideC,
+            };
 
-    /**
-     * This returns the getArea.
-     *
-     * @return this returns the getArea.
-     */
-    public double getArea() {
-        return this.area;
-    }
+            radianAngle = radianAngles[side - 1];
+        } else {
+            radianAngle = -1;
+        }
 
-    /**
-     * This returns the getAngleOne.
-     *
-     * @return this returns the getAngleOne.
-     */
-    public double getAngleA() {
-         return this.angleOne;
+        return radianAngle;
     }
 
     /**
-     * This returns the getAngleB.
+     * This is the inner innerCircle.
      *
-     * @return this returns the getAngleB.
+     * @return this returns the innerCircle.
      */
-    public double getAngleB () {
-         return this.angleTwo;
-    } 
+    public double innerCircleRadius() {
+        final double innerCircle;
+        if (!this.isTriangleValid()) {
+            innerCircle = -1;
+        } else {
+            innerCircle = this.area() / this.semiperimeter();
+        }
+        return innerCircle;
+    }
 
     /**
-     * This returns the getAngleC.
+     * This is the circumRadius.
      *
-     * @return this returns the getAngleC.
+     * @return This returns the circumRadius.
      */
-    public double getAngleC() {
-        return this.angleThree;
+    public double circumRadiusTriangle() {
+        final double circumRadius;
+        if (!this.isTriangleValid()) {
+            circumRadius = -1;
+        } else {
+            circumRadius = (this.sideA * this.sideB * this.sideC)
+                   / (2 * 2 * this.area());
+        }
+        return circumRadius;
     }
 
     /**
      * This is the status.
      */
     public void status() {
-        System.out.println("\nIs triangle Valid:" + this.HERE);
-        System.out.println("The three sides were");
-        System.out.println("Side A --->" + this.sideA);
-        System.out.println("Side B --->" + this.sideB);
-        System.out.println("Side C --->" + this.sideC);
+        System.out.println("\nTriangle Validity Status: "
+                        + this.isTriangleValid());
     }
 }

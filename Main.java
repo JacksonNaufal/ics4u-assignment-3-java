@@ -1,21 +1,46 @@
 /*
-* The program gets a a vehicle
-* and it calculates the stats.
+* The program gets a triangle
+* and it calculates the stats of a triangle.
 *
 * @author  Jackson Naufal
 * @version 1.0
-* @since   2020-10-17
+* @since   2020-11-08
 *
-* This is a Vehicle program
+* This is a Triangle program
 */
 
 import java.util.Scanner;
 /**
- * This is the main CarStatus Class.
- * Class CarStatus
+ * This is the main Triangle Class.
+ * Class Main
  */
 
 final class Main {
+
+    /**
+     * This is 3.
+     */
+    public static final int THREE = 3;
+
+    /**
+     * This is %.4f.
+     */
+    public static final String POINTMM = "%.4f cm²";
+
+    /**
+     * This is another.
+     */
+    public static final String RAD = "%.4f rad";
+
+    /**
+     * This is another.
+     */
+    public static final String CM = "%.4f cm";
+
+    /**
+     * This is cm.
+     */
+    public static final String CENI = " cm";
 
     /**
     * Prevent instantiation.
@@ -55,9 +80,6 @@ final class Main {
 
             if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
                 System.out.println("Invalid Input, Number to small!");
-            } else if (sideA + sideB <= sideC || sideB + sideC <= sideA
-                            || sideA + sideC <= sideB) {
-                System.out.println("Invalid Input, To long.");
             } else {
 
                 // this is a triangle program
@@ -65,33 +87,54 @@ final class Main {
 
                 triangle.status();
 
-                triangle.triangleName(sideA, sideB, sideC);
-                System.out.println("\nThe shape is a " + triangle.getShape());
+                System.out.println("\nThe three sides were");
+                System.out.println("Side A ---> " + triangle.getSideA() + CENI);
+                System.out.println("Side B ---> " + triangle.getSideB() + CENI);
+                System.out.println("Side C ---> " + triangle.getSideC() + CENI);
 
-                System.out.println("");
-                System.out.println("The Perimeter and Area are below!");
-                triangle.trianglePerimeter(sideA, sideB, sideC);
-                System.out.println("\nThe perimeter is "
-                                + triangle.getPerimeter() + "cm");
+                System.out.println("\nThe triangle type is below!");
+                System.out.println("The shape is a " + triangle.triangleName());
 
-                triangle.triangleArea(sideA, sideB, sideC);
-                System.out.println("The area is " + triangle.getArea() + "cm²");
+                System.out.println("\nThe Semiperimeter and Area are below!");
+                System.out.println("The semiperimeter is "
+                                + triangle.semiperimeter() + CENI);
 
-                System.out.println("");
-                System.out.println("The angles are below!");
-                triangle.angleA(sideA, sideB, sideC);
-                System.out.println("Angle A is " +triangle.getAngleA() + "°");
+                System.out.println("The area is " + String.format(POINTMM,
+                                        triangle.area()));
 
-                triangle.angleB(sideA, sideB, sideC);
-                System.out.println("Angle B is " + triangle.getAngleB() + "°");
+                System.out.println("\nThe angles are below!");
+                System.out.println("Angle A is " + String.format(RAD,
+                                        triangle.angles(1)));
+                System.out.println("Angle B is " + String.format(RAD,
+                                        triangle.angles(2)));
+                System.out.println("Angle C is " + String.format(RAD,
+                                        triangle.angles(THREE)));
 
-                triangle.angleC(sideA, sideB, sideC);
-                System.out.println("Angle C is " + triangle.getAngleC() + "°");
+                System.out.println("\nThe heights are below!");
+                System.out.println("The height of side A is "
+                                + String.format(CM,
+                                        triangle.height(1)));
+                System.out.println("The height of side B is "
+                                + String.format(CM,
+                                        triangle.height(2)));
+                System.out.println("The height of side C is "
+                                + String.format(CM,
+                                        triangle.height(THREE)));
+
+                System.out.println("\nInner circle radius below!");
+                System.out.println("The inner circle radius is "
+                                + String.format(CM,
+                                        triangle.innerCircleRadius()));
+
+                System.out.println("\nThe circumcircle is below!");
+                System.out.println("The circum circle radius is "
+                                + String.format(CM,
+                                        triangle.circumRadiusTriangle()));
 
             }
         } catch (java.util.InputMismatchException ex) {
             System.out.println("Invalid Input");
         }
-    System.out.println("\nDone!");
+        System.out.println("\nDone!");
     }
 }
